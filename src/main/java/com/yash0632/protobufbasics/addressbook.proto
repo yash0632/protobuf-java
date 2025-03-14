@@ -1,0 +1,32 @@
+syntax= "proto2";
+
+package com.yash0632.protobufbasics;
+
+option java_multiple_files = true;
+option java_package = "com.yash0632.protobufbasics.protos";
+option java_outer_classname = "AddressBookProtos";
+
+
+message Person{
+  optional string name = 1;
+  optional int32 id = 2;
+  optional string email = 3;
+
+  enum PhoneType{
+    MOBILE = 1;
+    HOME = 2;
+    WORK = 3;
+    UNSPECIFIED = 4;
+  }
+
+  message PhoneNumber{
+    optional string number = 1;
+    optional PhoneType type = 2[default = HOME];
+
+  }
+  repeated PhoneNumber phones = 4;
+}
+
+message AddressBook{
+  repeated Person person = 1;
+}
